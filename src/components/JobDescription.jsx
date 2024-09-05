@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import useStore from "../store/cover-jd-store";
 
 const JobDescription = () => {
-  const [description, setDescription] = useState('');
+  const { jobDescription, setJobDescription } = useStore();
 
   const handleInputChange = (e) => {
-    setDescription(e.target.value);
+    setJobDescription(e.target.value);
   };
 
   return (
@@ -13,7 +13,7 @@ const JobDescription = () => {
       <p>Enter the job description below to see your cover letter automatically updated.</p>
       <div className="form-group">
         <textarea
-          value={description}
+          value={jobDescription}
           onChange={handleInputChange}
           placeholder="Enter the job description here..."
           className="form-control"

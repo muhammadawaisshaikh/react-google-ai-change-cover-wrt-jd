@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import useStore from "../store/cover-jd-store";
 
 const CoverLetter = () => {
-  const [cover, setCover] = useState('');
+  const { coverLetter, setCoverLetter } = useStore();
 
   const handleInputChange = (e) => {
-    setCover(e.target.value);
+    setCoverLetter(e.target.value);
   };
 
   return (
@@ -13,7 +13,7 @@ const CoverLetter = () => {
       <p>Update your cover letter to perfectly match the job description on the right side.</p>
       <div className="form-group">
         <textarea
-          value={cover}
+          value={coverLetter}
           onChange={handleInputChange}
           placeholder="Enter your cover letter here..."
           className="form-control"
