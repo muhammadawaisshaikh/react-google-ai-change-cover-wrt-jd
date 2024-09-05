@@ -1,13 +1,27 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const CoverLetter = () => {
   const [cover, setCover] = useState('');
 
-  return (
-    <>
-      <h1>Cover Letter</h1>
-    </>
-  )
-}
+  const handleInputChange = (e) => {
+    setCover(e.target.value);
+  };
 
-export default CoverLetter
+  return (
+    <div className="container mt-4">
+      <h3 className="mb-2">Cover Letter</h3>
+      <p>Update your cover letter to perfectly match the job description on the right side.</p>
+      <div className="form-group">
+        <textarea
+          value={cover}
+          onChange={handleInputChange}
+          placeholder="Enter your cover letter here..."
+          className="form-control"
+          style={{ height: '40vh', resize: 'none' }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default CoverLetter;

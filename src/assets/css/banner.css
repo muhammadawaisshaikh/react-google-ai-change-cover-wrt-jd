@@ -1,0 +1,25 @@
+.banner {
+    background: url('../img/banner.webp') no-repeat center center;
+    background-size: cover;
+    background-color: #198754;
+    background-blend-mode: luminosity;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 8px;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
