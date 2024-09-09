@@ -1,48 +1,47 @@
-import './App.css';
+// src/App.js
+import React from 'react';
+import CoverLetter from './components/CoverLetter';
+import JobDescription from './components/JobDescription';
+import Banner from './components/Banner';
+import { TransformCoverAi } from './core/api/transorm-cover';
 import useStore from './store/cover-jd-store';
-import Banner from './components/Banner'
-import CoverLetter from './components/CoverLetter'
-import JobDescription from './components/JobDescription'
-import { TransormCoverAi } from './core/api/transorm-cover';
-import { useState } from 'react';
-
 
 function App() {
-  const { coverLetter, jobDescription } = useStore();
-  const [result, setResult] = useState('');
+  const { coverLetter, jobDescription, transformedCoverLetter, setTransformedCoverLetter } = useStore();
 
   const handleTransform = async () => {
-    try {
-      const transformedCoverLetter = await TransormCoverAi(coverLetter, jobDescription);
-      setResult(transformedCoverLetter);
-    } catch (error) {
-      console.error("Error transforming cover letter:", error);
-    }
+    const transformedCoverLetter = await TransformCoverAi(coverLetter, jobDescription);
+    setTransformedCoverLetter(transformedCoverLetter);
   };
 
   return (
     <>
       <Banner />
-      <div className="container">
-        <div className='row'>
-          <div className="col-6">
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-lg-6 mb-4 mb-lg-0">
             <CoverLetter />
           </div>
-          <div className="col-6">
+          <div className="col-lg-6">
             <JobDescription />
           </div>
-          <div className="col-12 text-center mt-5">
-            <button onClick={handleTransform} className='btn btn-success btn-lg'>Transform Now!</button>
+          <div className="col-12 text-center">
+            <button className="btn btn-success mt-4 btn-lg" onClick={handleTransform}>Transform Cover Letter</button>
           </div>
         </div>
-
-        <div className='border p-4 rounded mt-5'>
-          <h3 className='mb-4'>Updated cover letter to match the job requirements and make your application stand out.</h3>
-          <p>{result}</p>
+        <div className="mt-4">
+          {transformedCoverLetter ? (
+            <>
+              <h3>Transformed Cover Letter</h3>
+              <p>{transformedCoverLetter}</p>
+            </>
+          ) : (
+            <p>No transformed cover letter available. Please input the cover letter and job description, then click "Transform Cover Letter."</p>
+          )}
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

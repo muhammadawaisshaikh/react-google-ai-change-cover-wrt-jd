@@ -3,7 +3,7 @@ import { GEMINI_API_KEY } from "../config";
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-export const TransormCoverAi = async (cover, jd) => {
+export const TransformCoverAi = async (cover, jd) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
         const prompt = `Generate a brand new catchy cover letter based on the provided JD: ${jd}, and cover: ${cover}`;
@@ -16,4 +16,4 @@ export const TransormCoverAi = async (cover, jd) => {
         console.error("Error generating content:", error);
         return "An error occurred while generating the cover letter.";
     }
-}
+};
