@@ -10,7 +10,7 @@ import useLoaderStore from './store/loader-store';
 
 function App() {
   const { coverLetter, jobDescription, transformedCoverLetter, setTransformedCoverLetter } = useStore();
-  const { isLoading, setLoading, endLoading } = useLoaderStore();
+  const { isLoading, setLoading } = useLoaderStore();
   const [showModal, setShowModal] = useState(false);
 
   const handleTransform = async () => {
