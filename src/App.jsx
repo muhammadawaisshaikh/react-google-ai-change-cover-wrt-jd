@@ -1,18 +1,27 @@
-// src/App.js
-import React from 'react';
+import React, { useState } from 'react';
 import CoverLetter from './components/CoverLetter';
 import JobDescription from './components/JobDescription';
 import Banner from './components/Banner';
+import CustomPopup from './components/CustomPopup';
 import { TransformCoverAi } from './core/api/transorm-cover';
 import useStore from './store/cover-jd-store';
 
 function App() {
   const { coverLetter, jobDescription, transformedCoverLetter, setTransformedCoverLetter } = useStore();
+  const [showModal, setShowModal] = useState(false);
 
   const handleTransform = async () => {
     const transformedCoverLetter = await TransformCoverAi(coverLetter, jobDescription);
-    setTransformedCoverLetter(transformedCoverLetter);
+    await setTransformedCoverLetter(transformedCoverLetter);
+    handleShow();
   };
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  const footerButtons = [
+    { label: 'Close', className: 'btn-secondary', onClick: handleClose }
+  ];
 
   return (
     <>
@@ -29,17 +38,17 @@ function App() {
             <button className="btn btn-success mt-4 btn-lg" onClick={handleTransform}>Transform Cover Letter</button>
           </div>
         </div>
-        <div className="mt-4">
-          {transformedCoverLetter ? (
-            <>
-              <h3>Transformed Cover Letter</h3>
-              <p>{transformedCoverLetter}</p>
-            </>
-          ) : (
-            <p>No transformed cover letter available. Please input the cover letter and job description, then click "Transform Cover Letter."</p>
-          )}
-        </div>
       </div>
+
+      <CustomPopup
+        show={showModal}
+        handleClose={handleClose}
+        title="Transformed Cover Letter"
+        bodyContent={
+          <p>{transformedCoverLetter}</p>
+        }
+        footerButtons={footerButtons}
+      />
     </>
   );
 }

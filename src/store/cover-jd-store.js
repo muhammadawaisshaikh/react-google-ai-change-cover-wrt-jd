@@ -7,7 +7,7 @@ const useStore = create((set) => ({
   jobDescription: '',
   setJobDescription: (newJobDescription) => set({ jobDescription: newJobDescription }),
 
-  transformedCoverLetter: '',
+  transformedCoverLetter: 'No transformed cover letter available. Please input the cover letter and job description, then click "Transform Cover Letter."',
   setTransformedCoverLetter: (newText) => set({ transformedCoverLetter: newText }),
 }));
 
