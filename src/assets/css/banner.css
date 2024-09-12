@@ -37,6 +37,7 @@
     margin-top: 20px;
     font-size: 24px;
     transition: transform 0.3s ease;
+    animation: bounce 1.5s infinite;
 }
 
 .arrow-button svg {
@@ -46,4 +47,16 @@
 
 .arrow-button:hover svg {
     fill: #2980b9;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-25px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
