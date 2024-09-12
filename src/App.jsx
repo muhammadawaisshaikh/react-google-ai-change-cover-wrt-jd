@@ -3,17 +3,31 @@ import CoverLetter from './components/CoverLetter';
 import JobDescription from './components/JobDescription';
 import Banner from './components/Banner';
 import CustomPopup from './components/CustomPopup';
+import Loader from './components/Loader';
 import { TransformCoverAi } from './core/api/transorm-cover';
 import useStore from './store/cover-jd-store';
+import useLoaderStore from './store/loader-store';
 
 function App() {
   const { coverLetter, jobDescription, transformedCoverLetter, setTransformedCoverLetter } = useStore();
+  const { isLoading, setLoading, endLoading } = useLoaderStore();
   const [showModal, setShowModal] = useState(false);
 
   const handleTransform = async () => {
-    const transformedCoverLetter = await TransformCoverAi(coverLetter, jobDescription);
-    await setTransformedCoverLetter(transformedCoverLetter);
-    handleShow();
+    setLoading(true);
+
+    try {
+      const transformedCoverLetter = await TransformCoverAi(coverLetter, jobDescription);
+      await setTransformedCoverLetter(transformedCoverLetter);
+      handleShow();
+    }
+    catch (error) {
+      console.error('Error transforming cover letter:', error);
+    }
+    finally {
+      console.log('Loading ended');
+      setLoading(false);
+    }
   };
 
   const handleClose = () => setShowModal(false);
@@ -25,6 +39,7 @@ function App() {
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Banner />
       <div className="container mt-5">
         <div className="row">
