@@ -17,7 +17,7 @@ const JobDescription = () => {
           onChange={handleInputChange}
           placeholder="Enter the job description here..."
           className="form-control"
-          style={{ height: '40vh', resize: 'none' }}
+          style={{ height: '70vh', resize: 'none' }}
         />
       </div>
     </div>

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.17.1",
+    "gsap": "^3.12.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "^4.5.5"

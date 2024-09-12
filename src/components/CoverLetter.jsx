@@ -17,7 +17,7 @@ const CoverLetter = () => {
           onChange={handleInputChange}
           placeholder="Enter your cover letter here..."
           className="form-control"
-          style={{ height: '40vh', resize: 'none' }}
+          style={{ height: '70vh', resize: 'none' }}
         />
       </div>
     </div>
