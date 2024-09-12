@@ -17,7 +17,7 @@ const Banner = () => {
     return (
         <div className="banner">
             <div className="banner-content">
-                <h1>Transform Your Cover Letter with Ease!</h1>
+                <h1>Transform Your Cover Letter OR Proposal with Ease!</h1>
                 <p>
                     Effortlessly align your cover letter with the job description provided on the right. Simply update your cover letter to match the job requirements and make your application stand out.
                 </p>
